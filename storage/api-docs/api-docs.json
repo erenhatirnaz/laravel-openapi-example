@@ -1,0 +1,515 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenAPI Example",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/address": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Index",
+                "operationId": "f51f1b52a84a2fca51e2b868291ac891",
+                "responses": {
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "200": {
+                        "description": "List of addresses that belongs to the logged in user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Success"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Address"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Create",
+                "operationId": "fd63427415ec5c522a9ca1bf9a3e570a",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Address"
+                },
+                "responses": {
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "201": {
+                        "description": "Address created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Success"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Address"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/address/{id}": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Show",
+                "operationId": "95364f210efd887652e2c50437933b73",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AddressId"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                },
+                                "examples": {
+                                    "AddressNotFound": {
+                                        "$ref": "#/components/examples/AddressNotFound"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Success"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Address"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Update",
+                "operationId": "c1ca3d13c977744f58283995351ccff2",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AddressId"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Address"
+                },
+                "responses": {
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                },
+                                "examples": {
+                                    "AddressNotFound": {
+                                        "$ref": "#/components/examples/AddressNotFound"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Address updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Success"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Address"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Delete",
+                "operationId": "f4b0add9c24ff196bfd418f639c1e5d6",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AddressId"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                },
+                                "examples": {
+                                    "AddressNotFound": {
+                                        "$ref": "#/components/examples/AddressNotFound"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Address deleted successfully."
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Login",
+                "operationId": "dd51a484b7fa0f97c7680fdbde14cf5f",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/LoginRequest"
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                },
+                                "example": {
+                                    "code": "auth.incorrect",
+                                    "message": "Incorrect information."
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Success"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "properties": {
+                                                        "token": {
+                                                            "type": "string",
+                                                            "format": "uuid",
+                                                            "example": "71c943d9-944f-4584-a523-2592064ae282"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Error": {
+                "properties": {
+                    "code": {
+                        "description": "Error code",
+                        "type": "string",
+                        "example": "common.not-found"
+                    },
+                    "message": {
+                        "description": "Error message",
+                        "type": "string",
+                        "example": "Resource not found."
+                    }
+                },
+                "type": "object"
+            },
+            "Success": {
+                "properties": {
+                    "code": {
+                        "description": "Code",
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "data": {}
+                },
+                "type": "object"
+            },
+            "Address": {
+                "properties": {
+                    "id": {
+                        "description": "Address ID",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "description": "Type",
+                        "type": "string",
+                        "enum": [
+                            "home",
+                            "work",
+                            "other"
+                        ],
+                        "example": "home"
+                    },
+                    "title": {
+                        "description": "Title",
+                        "type": "string",
+                        "minLength": 2,
+                        "example": "Ev adresim"
+                    },
+                    "address": {
+                        "description": "Address",
+                        "type": "string",
+                        "minLength": 10,
+                        "example": "Bahçeşehir 2. Kısım 12. Caddesi no: 12I İstanbul Başakşehir"
+                    },
+                    "address_recipe": {
+                        "description": "Address recipe",
+                        "type": "string",
+                        "minLength": 2,
+                        "example": "erdal bakkal karşısı"
+                    },
+                    "lat_long": {
+                        "description": "Coordinates, Format: LAT, LONG",
+                        "type": "string",
+                        "example": "41.08442, 28.67263"
+                    },
+                    "city": {
+                        "description": "City",
+                        "type": "string",
+                        "example": "İstanbul"
+                    },
+                    "county": {
+                        "description": "County",
+                        "type": "string",
+                        "example": "Başakşehir"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "UnauthorizedError": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "example": {
+                            "code": "unauthenticated",
+                            "message": "User hasn't signed in."
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "AddressId": {
+                "name": "id",
+                "in": "path",
+                "description": "Address ID",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                },
+                "example": 1
+            }
+        },
+        "examples": {
+            "AddressNotFound": {
+                "summary": "Address not found",
+                "value": {
+                    "code": "common.not-found",
+                    "message": "Address not found."
+                }
+            }
+        },
+        "requestBodies": {
+            "Address": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "type",
+                                "title",
+                                "address",
+                                "address_recipe",
+                                "lat_long",
+                                "city",
+                                "county"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "$ref": "#/components/schemas/Address/properties/type"
+                                },
+                                "title": {
+                                    "$ref": "#/components/schemas/Address/properties/title"
+                                },
+                                "address": {
+                                    "$ref": "#/components/schemas/Address/properties/address"
+                                },
+                                "address_recipe": {
+                                    "$ref": "#/components/schemas/Address/properties/address_recipe"
+                                },
+                                "lat_long": {
+                                    "$ref": "#/components/schemas/Address/properties/lat_long"
+                                },
+                                "city": {
+                                    "$ref": "#/components/schemas/Address/properties/city"
+                                },
+                                "county": {
+                                    "$ref": "#/components/schemas/Address/properties/county"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "LoginRequest": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "email",
+                                "password"
+                            ],
+                            "properties": {
+                                "email": {
+                                    "description": "E-mail address",
+                                    "type": "string",
+                                    "example": "john.doe@example.com"
+                                },
+                                "password": {
+                                    "description": "Password",
+                                    "type": "string",
+                                    "example": "123456"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "token": {
+                "type": "http",
+                "description": "Bearer token for user",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
